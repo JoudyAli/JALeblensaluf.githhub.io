@@ -275,8 +275,8 @@ function sendMail() {
       message: message,
   };
 
-  const serviceID = "service_8qx454r"; // Replace with your EmailJS service ID
-  const templateID = "template_jxyqkuo"; // Replace with your EmailJS template ID
+  const serviceID = "service_8qx454r"; 
+  const templateID = "template_jxyqkuo"; 
 
   emailjs.send(serviceID, templateID, params)
       .then(function(response) {
