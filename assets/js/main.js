@@ -265,29 +265,35 @@ function sendMail() {
 
   // Check if name, email, and message are not empty
   if (name.trim() === "" || email.trim() === "" || message.trim() === "") {
-    alert("Please fill in all required fields (Name, Email, Message)");
-    return;
+      alert("Please fill in all required fields (Name, Email, Message)");
+      return;
   }
 
   var params = {
-    name: name,
-    email: email,
-    message: message,
-
+      name: name,
+      email: email,
+      message: message,
   };
 
-  const serviceID = "service_8qx454r";
-  const templateID = "template_jxyqkuo";
+  const serviceID = "service_8qx454r"; // Replace with your EmailJS service ID
+  const templateID = "template_jxyqkuo"; // Replace with your EmailJS template ID
 
-    emailjs.send(serviceID, templateID, params)
-    .then(res=>{
-        document.getElementById("name").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("message").value = "";
-        console.log(res);
-        alert("Your message sent successfully!!")
-
-    })
-    .catch(err=>console.log(err));
-
+  emailjs.send(serviceID, templateID, params)
+      .then(function(response) {
+          document.getElementById("name").value = "";
+          document.getElementById("email").value = "";
+          document.getElementById("message").value = "";
+          console.log("Email sent successfully!!");
+          alert("Your message sent successfully!!");
+      }, function(error) {
+          console.error("Email could not be sent: ", error);
+          alert("An error occurred while sending the email. Please try again later.");
+      });
 }
+
+document.getElementById("sendMail").addEventListener("submit", function (e) {
+  e.preventDefault(); // Prevent the default form submission behavior
+  sendMail(); // Call the sendMail function to handle the email sending
+});
+
+
